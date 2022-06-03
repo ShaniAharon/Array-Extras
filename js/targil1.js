@@ -6,6 +6,8 @@ console.log('biggerThan100');
 
 // 38. Write a function named biggerThan100. It gets an array of numbers and returns an array of only the numbers that are bigger than 100.
 
+// use unit testing if they didnt
+
 console.log('INPUT: [1, 3, 400, 60, 300, 500]')
 console.log('EXPECTED: [400, 300, 500]')
 console.log('ACTUAL:', biggerThan100([1, 3, 400, 60, 300, 500]))
@@ -51,12 +53,8 @@ function biggerThan100(nums) {
     return biggerNums
 }
 
-//filter
+//filter good choice
 function biggerThan100(nums) {
-    // var biggerNums = nums.filter(num => num > 100);
-    // for (var i = 0; i < nums.length; i++) {
-    //     if (nums[i] > 100) biggerNums.push(nums[i])
-    // }
     return nums.filter(num => num > 100);
 }
 
@@ -89,23 +87,22 @@ console.log('INPUT: ', nums)
 console.log('EXPECTED: Not valid number')
 console.log('ACTUAL:', printNumsCount(nums))
 
+//for
 function printNumsCount(nums) {
     var counts = [0, 0, 0, 0]
     for (var i = 0; i < nums.length; i++) {
         var num = nums[i]
-        if (isNaN(num) || num < 0 || num > 3) return 'Not valid number'
         counts[num]++
     }
     return counts
 }
-
-//forEach
+//                  change
+//forEach() does not mutate the array on which it is called. (However, callbackFn may do so)
+//forEach return undefined
 function printNumsCount(nums) {
     var counts = [0, 0, 0, 0]
-    for (var i = 0; i < nums.length; i++) {
-        var num = nums[i]
-        counts[num]++
-    }
+    //      [3, 2, 0, 2, 3]
+    nums.forEach(num => counts[num]++)
     return counts
 }
 
@@ -133,10 +130,8 @@ function multBy(nums, multiplier) {
 
 //Part b
 function multBy(nums, multiplier, isImmutable) {
+    //            can`t be changed
     var newNums = isImmutable ? nums.slice() : nums
-    // for (var i = 0; i < newNums.length; i++) {
-    //     newNums[i] *= multiplier
-    // }
     newNums.forEach((num, idx) => newNums[idx] = num * multiplier)
     return newNums
 }
